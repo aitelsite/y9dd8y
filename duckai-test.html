@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101218">
-<title>گفت‌وگوی هوش مصنوعی</title>
+<title>هوش مصنوعی با جست‌وجوی زنده وب</title>
 <style>
 :root{color-scheme:dark;--bg:#101218;--panel:#171a22;--line:#303544;--text:#f5f6fa;--muted:#aab0bf;--accent:#dce4ff;--user:#29334a;--bot:#1b202b}
 *{box-sizing:border-box}
@@ -49,7 +49,7 @@ textarea::placeholder{color:#969eb1}
 <header>
   <div class="brand">
     <div class="logo" aria-hidden="true">✦</div>
-    <div><h1>گفت‌وگوی هوش مصنوعی</h1><div class="subtitle">پاسخ‌گویی مستقیم با Cloudflare AI</div></div>
+    <div><h1>گفت‌وگوی هوش مصنوعی</h1><div class="subtitle">جست‌وجوی زندهٔ وب + هوش مصنوعی</div></div>
   </div>
   <div class="header-actions"><button class="small-btn" id="clear" type="button">گفت‌وگوی جدید ↻</button></div>
 </header>
@@ -57,7 +57,7 @@ textarea::placeholder{color:#969eb1}
   <section class="welcome" id="welcome">
     <div class="welcome-icon" aria-hidden="true">✧</div>
     <h2>چطور می‌تونم کمکت کنم؟</h2>
-    <p>سؤالت را بنویس و ارسال کن؛ پاسخ هوش مصنوعی در همین صفحه نمایش داده می‌شود. برای پاسخ‌های به‌روز و جست‌وجوی زندهٔ وب، ابزار جست‌وجو در این نسخه فعال نیست.</p>
+    <p>سؤالت را بفرست؛ قبل از پاسخ، وب جست‌وجو می‌شود و منابع مرتبط نمایش داده می‌شوند. اگر سرویس جست‌وجو یا اعتبار لازم فعال نباشد، خطا را صریح اعلام می‌کنیم و پاسخ آفلاین را جایگزین اطلاعات زنده نمی‌کنیم.</p>
     <div class="suggestions">
       <button class="suggestion" type="button">یک متن رسمی خبری بنویس</button>
       <button class="suggestion" type="button">یک مشکل فنی را مرحله‌به‌مرحله حل کن</button>
@@ -73,7 +73,7 @@ textarea::placeholder{color:#969eb1}
       <button id="send" type="submit">ارسال ↑</button>
     </form>
   </div>
-  <div id="status" role="status">برای ارسال مستقیم، دکمهٔ «ارسال» را بزن. سرویس از سهمیهٔ رایگان روزانهٔ Workers AI استفاده می‌کند و ممکن است در صورت اتمام سهمیه موقتاً پاسخ ندهد.</div>
+  <div id="status" role="status">پاسخ‌ها با جست‌وجوی وب تهیه می‌شوند. جست‌وجوی زنده ممکن است به فعال‌بودن AI Gateway و اعتبار یا کلید ارائه‌دهنده نیاز داشته باشد.</div>
 </section>
 <script>
 const API_URL = "https://aitel-ai-chat-2026.oj155304.workers.dev/api/chat";
@@ -112,8 +112,20 @@ async function sendMessage(text){
     if(!response.ok)throw new Error(data.error||"پاسخ‌گویی با خطا مواجه شد.");
     if(typeof data.answer!=="string"||!data.answer.trim())throw new Error("پاسخ معتبری دریافت نشد.");
     pending.querySelector(".bubble").textContent=data.answer.trim();
+    if(Array.isArray(data.sources)&&data.sources.length){
+      const sourceBox=document.createElement("div");
+      sourceBox.style.cssText="margin:8px 0 0 39px;display:flex;flex-direction:column;gap:6px;max-width:min(78%,720px)";
+      const title=document.createElement("div");title.textContent="منابع جست‌وجوی زنده";title.style.cssText="font-size:12px;color:#bfc8df;font-weight:700";sourceBox.appendChild(title);
+      data.sources.forEach(source=>{
+        if(!source||!/^https?:\\/\\//i.test(source.url||""))return;
+        const link=document.createElement("a");link.href=source.url;link.target="_blank";link.rel="noopener noreferrer";link.textContent=source.title||source.url;
+        link.style.cssText="color:#c6d4ff;font-size:12px;line-height:1.6;overflow-wrap:anywhere;text-decoration:underline";
+        sourceBox.appendChild(link);
+      });
+      if(sourceBox.children.length>1)pending.appendChild(sourceBox);
+    }
     messages.push({role:"assistant",content:data.answer.trim()});
-    setStatus("پاسخ دریافت شد.");
+    setStatus("پاسخ دریافت شد؛ منابع وب در صورت وجود زیر پاسخ آمده‌اند.");
   }catch(error){
     pending.remove();
     addMessage("assistant",error.message||"اتصال برقرار نشد. دوباره تلاش کن.",true);
