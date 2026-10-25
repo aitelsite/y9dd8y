@@ -4,146 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101218">
-<title>هوش مصنوعی با جست‌وجوی زنده وب</title>
+<title>Duck.ai در سایت من</title>
 <style>
-:root{color-scheme:dark;--bg:#101218;--panel:#171a22;--line:#303544;--text:#f5f6fa;--muted:#aab0bf;--accent:#dce4ff;--user:#29334a;--bot:#1b202b}
+:root{color-scheme:dark;--bg:#101218;--panel:#171a22;--line:#303544;--text:#f5f6fa;--muted:#aab0bf}
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
-body{min-height:100dvh;display:flex;flex-direction:column}
-header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#171a22f2;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+body{display:flex;flex-direction:column;min-height:100dvh}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;background:var(--panel);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.logo{display:grid;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#e8edff,#879cff);color:#121521;font-size:21px;font-weight:900}
+.logo{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:12px;background:#ffdf45;color:#171717;font-size:21px;font-weight:900}
 h1{font-size:15px;margin:0;font-weight:800}
 .subtitle{font-size:11px;color:var(--muted);margin-top:3px}
-.header-actions{display:flex;gap:7px;align-items:center}
-.small-btn{border:1px solid #42495b;background:#202531;color:#eef0f8;border-radius:10px;padding:8px 10px;font:inherit;font-size:12px;white-space:nowrap;cursor:pointer}
-main{width:100%;max-width:900px;margin:0 auto;flex:1;padding:20px 14px 20px}
-.welcome{max-width:620px;margin:8vh auto 24px;text-align:center}
-.welcome-icon{font-size:38px;margin-bottom:10px}
-.welcome h2{font-size:23px;margin:0 0 10px}
-.welcome p{font-size:14px;line-height:1.9;color:var(--muted);margin:0 auto 20px;max-width:540px}
-.suggestions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.suggestion{border:1px solid #383f50;background:#191d27;color:#e4e8f5;border-radius:14px;padding:10px 12px;font:inherit;font-size:12px;cursor:pointer}
-#chat{display:flex;flex-direction:column;gap:15px;padding-bottom:18px}
-.message{display:flex;gap:9px;align-items:flex-start;max-width:100%}
-.message.user{flex-direction:row-reverse}
-.avatar{width:30px;height:30px;flex:0 0 30px;border-radius:10px;display:grid;place-items:center;background:#30374a;color:#fff;font-size:13px;font-weight:800}
-.message.user .avatar{background:#dce4ff;color:#121521}
-.bubble{max-width:min(78%,720px);border:1px solid #303746;background:var(--bot);padding:12px 14px;border-radius:15px;line-height:1.9;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
-.message.user .bubble{background:var(--user);border-color:#414d68}
-.message.error .bubble{border-color:#8b4545;color:#ffd6d6}
-.composer-wrap{position:sticky;bottom:0;z-index:4;background:linear-gradient(180deg,transparent,var(--bg) 18%);padding:14px 12px calc(10px + env(safe-area-inset-bottom))}
-.composer{max-width:850px;margin:0 auto;border:1px solid #444b5e;background:#1b202b;border-radius:18px;padding:8px;box-shadow:0 8px 35px #0005}
-form{display:flex;gap:8px;align-items:flex-end}
-textarea{flex:1;min-width:0;min-height:46px;max-height:160px;resize:vertical;background:transparent;color:#fff;border:0;border-radius:12px;padding:11px;font:inherit;font-size:14px;line-height:1.7;outline:none}
-textarea::placeholder{color:#969eb1}
-#send{border:0;border-radius:13px;background:var(--accent);color:#141722;padding:0 17px;min-width:84px;height:45px;font:inherit;font-size:14px;font-weight:800;cursor:pointer}
-#send:disabled{opacity:.5;cursor:wait}
-#status{max-width:850px;margin:7px auto 0;color:#929aab;font-size:11px;line-height:1.7;text-align:center}
-#status.error{color:#ffbaba}
-.hidden{display:none!important}
-@media(max-width:540px){header{padding:10px 11px}.logo{width:34px;height:34px}h1{font-size:13px}.subtitle{font-size:10px}.small-btn{padding:7px 8px;font-size:11px}main{padding:14px 10px}.welcome{margin-top:6vh}.welcome h2{font-size:20px}.bubble{max-width:86%;font-size:13px;padding:10px 11px}.composer-wrap{padding-left:8px;padding-right:8px}#send{min-width:70px;padding:0 12px}}
+.actions{display:flex;gap:7px;align-items:center}
+button,.link{border:1px solid #42495b;background:#202531;color:#eef0f8;border-radius:10px;padding:8px 10px;font:inherit;font-size:12px;white-space:nowrap;cursor:pointer;text-decoration:none}
+main{flex:1;min-height:0;display:flex;flex-direction:column}
+#notice{padding:8px 12px;text-align:center;color:#c4cad8;font-size:12px;line-height:1.6;background:#141720;border-bottom:1px solid var(--line)}
+#duck-frame{display:block;border:0;width:100%;height:100%;min-height:0;flex:1;background:white}
+#fallback{display:none;margin:16px;padding:16px;border:1px solid #6b5830;border-radius:14px;background:#211e16;line-height:1.9;font-size:14px}
+#fallback a{color:#ffe58a}
+@media(max-width:540px){header{padding:9px}.logo{width:32px;height:32px;flex-basis:32px}h1{font-size:13px}.subtitle{font-size:10px}button,.link{padding:7px 8px;font-size:11px}#notice{font-size:11px}}
 </style>
 </head>
 <body>
 <header>
   <div class="brand">
-    <div class="logo" aria-hidden="true">✦</div>
-    <div><h1>گفت‌وگوی هوش مصنوعی</h1><div class="subtitle">جست‌وجوی زندهٔ وب + هوش مصنوعی</div></div>
+    <div class="logo" aria-hidden="true">🦆</div>
+    <div><h1>Duck.ai</h1><div class="subtitle">رابط اصلی DuckDuckGo در این صفحه</div></div>
   </div>
-  <div class="header-actions"><button class="small-btn" id="clear" type="button">گفت‌وگوی جدید ↻</button></div>
+  <div class="actions">
+    <button id="reload" type="button">بارگذاری دوباره ↻</button>
+    <a class="link" href="https://duck.ai/" target="_blank" rel="noopener noreferrer">بازکردن مستقیم</a>
+  </div>
 </header>
 <main>
-  <section class="welcome" id="welcome">
-    <div class="welcome-icon" aria-hidden="true">✧</div>
-    <h2>چطور می‌تونم کمکت کنم؟</h2>
-    <p>سؤالت را بفرست؛ قبل از پاسخ، وب جست‌وجو می‌شود و منابع مرتبط نمایش داده می‌شوند. اگر سرویس جست‌وجو یا اعتبار لازم فعال نباشد، خطا را صریح اعلام می‌کنیم و پاسخ آفلاین را جایگزین اطلاعات زنده نمی‌کنیم.</p>
-    <div class="suggestions">
-      <button class="suggestion" type="button">یک متن رسمی خبری بنویس</button>
-      <button class="suggestion" type="button">یک مشکل فنی را مرحله‌به‌مرحله حل کن</button>
-      <button class="suggestion" type="button">این موضوع را ساده توضیح بده</button>
-    </div>
+  <div id="notice">در حال بارگذاری Duck.ai… اگر سرویس اجازهٔ نمایش در قاب سایت دیگر را ندهد، از دکمهٔ «بازکردن مستقیم» استفاده کن.</div>
+  <iframe id="duck-frame" src="https://duck.ai/" title="رابط رسمی Duck.ai" allow="clipboard-read; clipboard-write; microphone; camera" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  <section id="fallback">
+    <strong>اگر پنجرهٔ چت داخل این صفحه باز نشد</strong>
+    <p>Duck.ai ممکن است نمایش داخل سایت‌های دیگر را به دلایل امنیتی مسدود کند. این محدودیت را نمی‌توان از سمت سایت شما دور زد. برای استفاده از همان رابط رسمی، روی لینک زیر بزن:</p>
+    <p><a href="https://duck.ai/" target="_blank" rel="noopener noreferrer">ورود به Duck.ai</a></p>
   </section>
-  <section id="chat" aria-live="polite" aria-label="گفت‌وگو"></section>
 </main>
-<section class="composer-wrap">
-  <div class="composer">
-    <form id="askForm">
-      <textarea id="question" rows="1" placeholder="پیامت را اینجا بنویس..." aria-label="متن پیام" required></textarea>
-      <button id="send" type="submit">ارسال ↑</button>
-    </form>
-  </div>
-  <div id="status" role="status">پاسخ‌ها با جست‌وجوی وب تهیه می‌شوند. جست‌وجوی زنده ممکن است به فعال‌بودن AI Gateway و اعتبار یا کلید ارائه‌دهنده نیاز داشته باشد.</div>
-</section>
 <script>
-const API_URL = "https://aitel-ai-chat-2026.oj155304.workers.dev/api/chat";
-const form = document.getElementById("askForm");
-const input = document.getElementById("question");
-const sendButton = document.getElementById("send");
-const statusEl = document.getElementById("status");
-const chat = document.getElementById("chat");
-const welcome = document.getElementById("welcome");
-const messages = [];
-let busy = false;
-
-function setStatus(text, error=false){statusEl.textContent=text;statusEl.classList.toggle("error",error);}
-function addMessage(role, content, isError=false){
-  welcome.classList.add("hidden");
-  const row=document.createElement("div");
-  row.className="message "+(role==="user"?"user":"assistant")+(isError?" error":"");
-  const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent=role==="user"?"ش":"✦";
-  const bubble=document.createElement("div");bubble.className="bubble";bubble.textContent=content;
-  row.append(avatar,bubble);chat.appendChild(row);
-  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
-  return row;
-}
-async function sendMessage(text){
-  const question=text.trim();
-  if(!question||busy)return;
-  busy=true;sendButton.disabled=true;input.disabled=true;
-  messages.push({role:"user",content:question});
-  addMessage("user",question);
-  input.value="";input.style.height="auto";
-  setStatus("در حال دریافت پاسخ هوش مصنوعی…");
-  const pending=addMessage("assistant","در حال فکر کردن…");
-  try{
-    const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-12)})});
-    let data={};try{data=await response.json()}catch{}
-    if(!response.ok)throw new Error(data.error||"پاسخ‌گویی با خطا مواجه شد.");
-    if(typeof data.answer!=="string"||!data.answer.trim())throw new Error("پاسخ معتبری دریافت نشد.");
-    pending.querySelector(".bubble").textContent=data.answer.trim();
-    if(Array.isArray(data.sources)&&data.sources.length){
-      const sourceBox=document.createElement("div");
-      sourceBox.style.cssText="margin:8px 0 0 39px;display:flex;flex-direction:column;gap:6px;max-width:min(78%,720px)";
-      const title=document.createElement("div");title.textContent="منابع جست‌وجوی زنده";title.style.cssText="font-size:12px;color:#bfc8df;font-weight:700";sourceBox.appendChild(title);
-      data.sources.forEach(source=>{
-        if(!(source.url||"").startsWith("https://")&&!(source.url||"").startsWith("http://"))return;
-        const link=document.createElement("a");link.href=source.url;link.target="_blank";link.rel="noopener noreferrer";link.textContent=source.title||source.url;
-        link.style.cssText="color:#c6d4ff;font-size:12px;line-height:1.6;overflow-wrap:anywhere;text-decoration:underline";
-        sourceBox.appendChild(link);
-      });
-      if(sourceBox.children.length>1)pending.appendChild(sourceBox);
-    }
-    messages.push({role:"assistant",content:data.answer.trim()});
-    setStatus("پاسخ دریافت شد؛ منابع وب در صورت وجود زیر پاسخ آمده‌اند.");
-  }catch(error){
-    pending.remove();
-    addMessage("assistant",error.message||"اتصال برقرار نشد. دوباره تلاش کن.",true);
-    setStatus(error.message||"اتصال برقرار نشد. دوباره تلاش کن.",true);
-  }finally{
-    busy=false;sendButton.disabled=false;input.disabled=false;input.focus();
-  }
-}
-form.addEventListener("submit",event=>{event.preventDefault();sendMessage(input.value);});
-input.addEventListener("keydown",event=>{
-  if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();form.requestSubmit();}
-});
-input.addEventListener("input",()=>{input.style.height="auto";input.style.height=Math.min(input.scrollHeight,160)+"px";});
-document.querySelectorAll(".suggestion").forEach(button=>button.addEventListener("click",()=>{input.value=button.textContent;input.focus();input.dispatchEvent(new Event("input"));}));
-document.getElementById("clear").addEventListener("click",()=>{
-  if(busy)return;
-  messages.length=0;chat.replaceChildren();welcome.classList.remove("hidden");input.value="";input.style.height="auto";setStatus("گفت‌وگوی تازه آماده است.");input.focus();
-});
+const frame=document.getElementById("duck-frame");
+const notice=document.getElementById("notice");
+document.getElementById("reload").addEventListener("click",()=>{notice.textContent="در حال بارگذاری دوباره Duck.ai…";frame.src="https://duck.ai/";});
+frame.addEventListener("load",()=>{notice.textContent="رابط رسمی Duck.ai در قاب زیر بارگذاری شد؛ پیام را در کادر خود Duck.ai بنویس و دکمهٔ ارسال همان صفحه را بزن.";});
+// مرورگرها عمداً اجازه نمی‌دهند صفحهٔ میزبان بفهمد محتوای یک iframe خارجی چه خطایی داده است.
+setTimeout(()=>{document.getElementById("fallback").style.display="block";},9000);
 </script>
 </body>
 </html>
