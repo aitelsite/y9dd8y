@@ -117,7 +117,7 @@ async function sendMessage(text){
       sourceBox.style.cssText="margin:8px 0 0 39px;display:flex;flex-direction:column;gap:6px;max-width:min(78%,720px)";
       const title=document.createElement("div");title.textContent="منابع جست‌وجوی زنده";title.style.cssText="font-size:12px;color:#bfc8df;font-weight:700";sourceBox.appendChild(title);
       data.sources.forEach(source=>{
-        if(!source||!/^https?:\\/\\//i.test(source.url||""))return;
+        if(!(source.url||"").startsWith("https://")&&!(source.url||"").startsWith("http://"))return;
         const link=document.createElement("a");link.href=source.url;link.target="_blank";link.rel="noopener noreferrer";link.textContent=source.title||source.url;
         link.style.cssText="color:#c6d4ff;font-size:12px;line-height:1.6;overflow-wrap:anywhere;text-decoration:underline";
         sourceBox.appendChild(link);
