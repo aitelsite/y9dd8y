@@ -1,45 +1,79 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101218">
-<meta name="description" content="درگاه فارسی برای دسترسی به گفت‌وگوی Duck.ai">
-<title>Duck AI | گفت‌وگوی هوشمند</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101218"><meta name="description" content="دستیار هوش مصنوعی فارسی با رابط چت درون‌صفحه‌ای">
+<title>AI Chat | گفت‌وگوی هوشمند</title>
 <style>
-:root{color-scheme:dark;--bg:#101218;--panel:#191c25;--line:#2c303c;--text:#f3f4f8;--muted:#a5aaba;--accent:#deff00;--blue:#8ab4ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#242a3a 0,transparent 55%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;min-height:100vh}
-header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);border-bottom:1px solid #ffffff12}
-.brand{display:flex;align-items:center;gap:12px;font-weight:750;font-size:18px}.logo{width:36px;height:36px;border-radius:13px;background:var(--accent);color:#171a20;display:grid;place-items:center;font-size:21px;font-weight:900}
-.status{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:7px 11px;border-radius:99px}
-main{width:min(100% - 28px,900px);margin:0 auto;padding:48px 0 36px}.intro{text-align:center;margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.06em;color:var(--accent);font-weight:700}.intro h1{font-size:clamp(29px,5vw,46px);margin:12px 0 10px;letter-spacing:-.04em}.intro p{color:var(--muted);line-height:1.9;margin:0 auto;max-width:610px}
-.shell{border:1px solid var(--line);border-radius:24px;background:#151821d9;overflow:hidden;box-shadow:0 24px 90px #0005}.bar{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.bar strong{font-size:14px}.bar small{color:var(--muted)}
-.frame-wrap{height:calc(100vh - 190px);min-height:620px;background:#fff;position:relative}.frame-wrap iframe{border:0;width:100%;height:100%;background:#fff}.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;background:var(--panel);z-index:2}.overlay.show{display:flex}.overlay-card{max-width:480px}.duck{font-size:38px;margin-bottom:12px}.overlay h2{font-size:22px;margin:8px}.overlay p{color:var(--muted);line-height:1.9;font-size:14px}
-button,.primary{appearance:none;border:0;border-radius:14px;background:var(--accent);color:#171a20;font-weight:800;font-size:14px;padding:13px 20px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}.secondary{background:#252a36;color:var(--text);border:1px solid var(--line)}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-.hint{padding:15px 18px;color:var(--muted);font-size:12px;line-height:1.9;border-top:1px solid var(--line)}
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.info article{background:#171a22;border:1px solid var(--line);border-radius:16px;padding:16px}.info b{display:block;font-size:13px;margin-bottom:6px}.info p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
-footer{text-align:center;padding:12px 16px 30px;color:#777e8e;font-size:12px}a{color:var(--blue)}
-@media(max-width:620px){header{height:62px}.status{font-size:10px;padding:6px 8px}main{padding-top:18px}.frame-wrap{height:calc(100vh - 170px);min-height:520px}.info{grid-template-columns:1fr}.intro p{font-size:14px}.bar{align-items:flex-start;flex-direction:column;gap:5px}}
+:root{color-scheme:dark;--bg:#101218;--side:#151821;--panel:#1b1f2a;--line:#303544;--text:#f3f4f8;--muted:#a3a9b8;--accent:#deff00;--blue:#a5baff;--bubble:#202531}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--side);border-left:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:14px}.brand{display:flex;align-items:center;gap:10px;padding:4px 5px 14px;font-weight:800;font-size:17px}.logo{width:36px;height:36px;border-radius:13px;background:var(--accent);color:#171a20;display:grid;place-items:center;font-size:21px}.btn{border:1px solid var(--line);border-radius:13px;background:var(--panel);color:var(--text);padding:11px 13px;display:flex;align-items:center;justify-content:center;gap:8px}.btn.primary{background:var(--accent);color:#171a20;border-color:var(--accent);font-weight:800}.btn.full{width:100%}.btn:hover{filter:brightness(1.12)}.side-tools{display:grid;gap:8px}.label{font-size:11px;color:var(--muted);padding:7px 8px 0}.history{display:grid;gap:5px;overflow:auto}.history-item{border:0;background:transparent;color:var(--muted);text-align:right;padding:10px;border-radius:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.history-item.active,.history-item:hover{background:#252a36;color:var(--text)}.side-bottom{margin-top:auto;display:grid;gap:8px}.main{min-width:0;display:flex;flex-direction:column;min-height:100vh}.topbar{height:64px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,3vw,30px);gap:10px}.top-left,.top-right{display:flex;align-items:center;gap:9px}.model{max-width:190px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}.content{width:min(100% - 28px,820px);margin:0 auto;flex:1;display:flex;flex-direction:column;padding:35px 0 22px}.welcome{text-align:center;margin:auto 0 24px}.welcome .spark{font-size:34px;color:var(--accent)}h1{font-size:clamp(26px,4vw,39px);margin:10px 0}.welcome p{color:var(--muted);line-height:1.9;margin:0 auto;max-width:540px;font-size:14px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:650px;margin:22px auto 0}.suggestion{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--panel);color:var(--text);text-align:right;line-height:1.6}.messages{display:flex;flex-direction:column;gap:18px;padding-bottom:22px}.message{max-width:88%;line-height:1.95;white-space:pre-wrap;overflow-wrap:anywhere}.message.user{align-self:flex-start;background:var(--bubble);border:1px solid var(--line);border-radius:18px 18px 5px 18px;padding:12px 16px}.message.assistant{align-self:stretch;padding:8px 4px}.message .who{font-size:11px;color:var(--muted);margin-bottom:5px}.message.error{color:#ffb4ab}.composer-wrap{position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 18%);padding:18px 0 8px}.composer{border:1px solid #444a5a;background:#1a1e28;border-radius:22px;padding:12px;box-shadow:0 12px 45px #0003}.composer textarea{display:block;width:100%;resize:vertical;min-height:56px;max-height:200px;border:0;outline:0;background:transparent;color:var(--text);padding:7px;line-height:1.7}.compose-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}.compose-actions small{font-size:11px;color:var(--muted)}.compose-buttons{display:flex;gap:8px}.send{width:42px;height:42px;border-radius:14px;border:0;background:var(--accent);color:#171a20;font-weight:900;font-size:19px}.footnote{text-align:center;color:#777f90;font-size:11px;line-height:1.8;margin-top:10px}.empty-hidden{display:none!important}.mobile-menu{display:none}
+dialog{border:1px solid var(--line);border-radius:20px;background:var(--side);color:var(--text);width:min(92vw,520px);padding:22px;box-shadow:0 25px 100px #0009}dialog::backdrop{background:#0009}dialog h2{margin:0 0 12px;font-size:20px}dialog p{color:var(--muted);font-size:13px;line-height:1.9}dialog input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:var(--bg);color:var(--text);direction:ltr;margin:8px 0 12px}.dialog-actions{display:flex;gap:8px;flex-wrap:wrap}.small-link{color:var(--blue);font-size:13px}
+body.light{color-scheme:light;--bg:#f7f8fb;--side:#eef0f5;--panel:#fff;--line:#dce0e8;--text:#1c2230;--muted:#697184;--bubble:#eceff5}
+body.light .topbar{border-bottom-color:#00000012}body.light .composer{background:#fff}body.light .history-item.active,body.light .history-item:hover{background:#dfe4ee}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{display:none;position:fixed;z-index:10;inset:0 auto 0 0;width:min(84vw,300px);box-shadow:0 0 0 100vmax #0008}.sidebar.open{display:flex}.mobile-menu{display:inline-flex}.content{padding-top:20px}.suggestions{grid-template-columns:1fr}.message{max-width:96%}.topbar{height:58px}.model{max-width:145px}.welcome{margin-top:35px}}
 </style>
 </head>
 <body>
-<header><div class="brand"><div class="logo">✳</div><span>Duck AI <span style="color:var(--muted);font-weight:500">فارسی</span></span></div><span class="status">درگاه غیررسمی</span></header>
-<main>
-<section class="intro"><div class="eyebrow">گفت‌وگوی هوشمند</div><h1>با Duck.ai گفتگو کن</h1><p>در این صفحه تلاش می‌کنیم چت رسمی Duck.ai را در دسترس قرار دهیم. امکانات و پاسخ‌ها متعلق به سرویس اصلی Duck.ai هستند.</p></section>
-<section class="shell" aria-label="پنجره Duck.ai">
-<div class="bar"><strong>گفت‌وگوی Duck.ai</strong><small id="state" role="status">نسخهٔ رسمی Duck.ai در پنجرهٔ زیر</small></div>
-<div class="frame-wrap">
-<iframe id="duckframe" title="Duck.ai official chat" src="https://duck.ai/chat?ia=chat&duckai=1&home=1&prompt=1&origin=funnel_home_google&t=h_&chatID=9b05d61f-c88f-4918-acd6-438964519e4a" referrerpolicy="no-referrer" allow="clipboard-read; clipboard-write"></iframe>
-<div id="overlay" class="overlay"><div class="overlay-card"><div class="duck">🦆</div><h2>اگر چت درون صفحه باز نشد</h2><p>ممکن است سیاست امنیتی Duck.ai اجازهٔ نمایش داخل سایت دیگر را ندهد. در این حالت، از لینک رسمی زیر استفاده کن؛ محدودیت iframe از سمت سایت مقصد است.</p><div class="actions"><a class="primary" href="https://duck.ai/chat?ia=chat&duckai=1&home=1" target="_blank" rel="noopener noreferrer">باز کردن Duck.ai ↗</a><button class="secondary" id="retry">تلاش دوباره</button></div></div></div>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="logo">✳</div><span>گفت‌وگوی هوشمند</span></div>
+<button class="btn primary full" id="newChat">＋ گفت‌وگوی جدید</button>
+<div class="side-tools">
+<button class="btn full" id="searchHistory">⌕ جستجو در گفتگوها</button>
+<button class="btn full" id="settingsBtn">⚙ تنظیمات اتصال هوش مصنوعی</button>
 </div>
-<div class="hint">این صفحه نسخهٔ رسمی یا وابسته به DuckDuckGo نیست و کد اختصاصی Duck.ai را کپی نمی‌کند. اگر پنجره سفید ماند، از دکمهٔ «باز کردن Duck.ai» استفاده کن.</div>
+<div class="label">گفتگوهای اخیر</div><div class="history" id="history"></div>
+<div class="side-bottom">
+<button class="btn full" id="themeBtn">☼ تغییر پوسته</button>
+<div class="label">این یک رابط مستقل است؛ سرویس پاسخ‌گو از تنظیمات انتخاب می‌شود.</div>
+</div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="top-left"><button class="btn mobile-menu" id="menuBtn" aria-label="منو">☰</button><strong>چت</strong><select id="model" class="model" aria-label="مدل هوش مصنوعی"><option value="gemini-2.5-flash">Gemini Flash</option><option value="gemini-2.5-pro">Gemini Pro</option></select></div>
+<div class="top-right"><button class="btn" id="newTop">＋ جدید</button><button class="btn" id="settingsTop">⚙</button></div>
+</header>
+<section class="content">
+<div class="welcome" id="welcome"><div class="spark">✳</div><h1>امروز چطور کمکت کنم؟</h1><p>سؤال بپرس، متن بنویس، ترجمه کن یا برای ایده‌هایت کمک بگیر. برای دریافت پاسخ واقعی، اتصال رایگانِ دارای محدودیت را در تنظیمات فعال کن.</p>
+<div class="suggestions"><button class="suggestion">✍️ یک متن رسمی فارسی برایم بنویس</button><button class="suggestion">🌐 این متن را به انگلیسی ترجمه کن</button><button class="suggestion">💡 برای یک پروژه ایده پیشنهاد بده</button><button class="suggestion">🧠 یک موضوع سخت را ساده توضیح بده</button></div></div>
+<div class="messages" id="messages"></div>
+<div class="composer-wrap"><div class="composer"><textarea id="prompt" rows="2" placeholder="پیامت را بنویس… (برای ارسال Enter و برای خط جدید Shift+Enter)" aria-label="پیام"></textarea><div class="compose-actions"><small id="connectionStatus">برای شروع، اتصال هوش مصنوعی را تنظیم کن</small><div class="compose-buttons"><button class="btn" id="clearBtn" title="پاک کردن متن">پاک‌کردن</button><button class="send" id="sendBtn" title="ارسال پیام">↑</button></div></div></div><div class="footnote">پاسخ‌ها از سرویس انتخاب‌شده دریافت می‌شوند. کلید API فقط در مرورگر خودت ذخیره می‌شود و در کد عمومی سایت قرار نمی‌گیرد.</div></div>
 </section>
-<section class="info"><article><b>🔐 حریم خصوصی</b><p>این صفحه رمز عبور یا اطلاعات ورود تو را درخواست نمی‌کند.</p></article><article><b>🌐 سرویس اصلی</b><p>برای دریافت پاسخ واقعی، اتصال باید از طریق خود Duck.ai انجام شود.</p></article><article><b>⚙️ محدودیت فنی</b><p>نمایش در iframe به سیاست امنیتی سایت مقصد و مرورگر بستگی دارد.</p></article></section>
-</main><footer>ساخته‌شده به‌عنوان درگاه مستقل؛ Duck.ai متعلق به ارائه‌دهندهٔ اصلی آن است.</footer>
+</main>
+</div>
+<dialog id="settings">
+<h2>اتصال به هوش مصنوعی</h2>
+<p>این سایت روی GitHub Pages اجرا می‌شود و سرور مخفی ندارد؛ برای پاسخ واقعی، کلید API لازم است. می‌توانی از سطح رایگان Gemini استفاده کنی؛ محدودیت‌ها و دسترسی به مدل به حساب و منطقه بستگی دارد. کلید را در GitHub وارد نکن.</p>
+<label for="apiKey">کلید API گوگل</label><input id="apiKey" type="password" autocomplete="off" placeholder="کلید API را اینجا وارد کن">
+<p><a class="small-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">دریافت کلید از Google AI Studio ↗</a></p>
+<div class="dialog-actions"><button class="btn primary" id="saveKey">ذخیره در همین مرورگر</button><button class="btn" id="forgetKey">حذف کلید ذخیره‌شده</button><button class="btn" id="closeSettings">بستن</button></div>
+</dialog>
 <script>
-const frame=document.getElementById('duckframe'),overlay=document.getElementById('overlay'),state=document.getElementById('state');let loaded=false;
-frame.addEventListener('load',()=>{loaded=true;state.textContent='صفحهٔ مقصد پاسخ داده است؛ تعامل کامل به اجازهٔ Duck.ai بستگی دارد'});
-document.getElementById('retry').addEventListener('click',()=>{overlay.classList.remove('show');state.textContent='در حال تلاش دوباره…';frame.src='https://duck.ai/chat?ia=chat&duckai=1&home=1&prompt=1&origin=funnel_home_google&t=h_&chatID='+Date.now()});
-setTimeout(()=>{if(!loaded){state.textContent='بارگذاری طولانی شد؛ ممکن است Duck.ai نمایش درون‌صفحه‌ای را مسدود کرده باشد';overlay.classList.add('show')}},12000);
+const $=id=>document.getElementById(id);
+const KEY_NAME='aichat_gemini_key_v1', CHATS='aichat_conversations_v1';
+let conversations=readChats(), activeId=null, busy=false;
+function readChats(){try{return JSON.parse(localStorage.getItem(CHATS)||'[]')}catch{return []}}
+function saveChats(){localStorage.setItem(CHATS,JSON.stringify(conversations))}
+function newId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function current(){return conversations.find(c=>c.id===activeId)}
+function startChat(){const c={id:newId(),title:'گفت‌وگوی جدید',messages:[],updated:Date.now()};conversations.unshift(c);activeId=c.id;saveChats();render();$('prompt').focus()}
+function ensureChat(){if(!current())startChat();return current()}
+function render(){renderHistory();const c=current();$('messages').innerHTML='';$('welcome').classList.toggle('empty-hidden',!!(c&&c.messages.length));if(c){c.messages.forEach(m=>addBubble(m.role,m.text,m.error,false));} $('connectionStatus').textContent=localStorage.getItem(KEY_NAME)?'اتصال تنظیم شده · آمادهٔ گفتگو':'برای شروع، اتصال هوش مصنوعی را تنظیم کن';$('model').value=localStorage.getItem('aichat_model')||'gemini-2.5-flash';}
+function renderHistory(){const q=($('searchHistory').dataset.q||'').toLowerCase();$('history').innerHTML='';conversations.filter(c=>!q||c.title.toLowerCase().includes(q)).forEach(c=>{const b=document.createElement('button');b.className='history-item'+(c.id===activeId?' active':'');b.textContent=c.title;b.title=c.title;b.onclick=()=>{activeId=c.id;render();if(innerWidth<=760)$('sidebar').classList.remove('open')};$('history').appendChild(b)})}
+function addBubble(role,text,error=false,scroll=true){const d=document.createElement('div');d.className='message '+role+(error?' error':'');const who=document.createElement('div');who.className='who';who.textContent=role==='user'?'شما':'دستیار';const body=document.createElement('div');body.textContent=text;d.append(who,body);$('messages').appendChild(d);if(scroll)d.scrollIntoView({behavior:'smooth',block:'end'});return d}
+async function send(){if(busy)return;const input=$('prompt'),text=input.value.trim();if(!text)return;const key=localStorage.getItem(KEY_NAME);if(!key){$('settings').showModal();$('apiKey').focus();return}const c=ensureChat();c.messages.push({role:'user',text});if(c.messages.length===1)c.title=text.slice(0,42)+(text.length>42?'…':'');c.updated=Date.now();saveChats();input.value='';busy=true;render();addBubble('user',text);const loading=addBubble('assistant','در حال فکر کردن…');$('sendBtn').textContent='…';$('sendBtn').disabled=true;
+try{const model=$('model').value;localStorage.setItem('aichat_model',model);const contents=c.messages.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.text}]}));const response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(model)+':generateContent?key='+encodeURIComponent(key),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents, generationConfig:{temperature:0.7,maxOutputTokens:2048}})});const data=await response.json();if(!response.ok)throw new Error(data?.error?.message||('خطای سرویس ('+response.status+')'));const answer=(data.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').trim();if(!answer)throw new Error('پاسخی از مدل دریافت نشد.');loading.remove();c.messages.push({role:'assistant',text:answer});c.updated=Date.now();saveChats();addBubble('assistant',answer);renderHistory()}catch(e){loading.remove();addBubble('assistant','خطا: '+(e.message||'اتصال ناموفق بود')+'\n\nاگر کلید تازه است، دسترسی مدل و سهمیهٔ رایگان آن را بررسی کن.',true);c.messages.pop();saveChats()}finally{busy=false;$('sendBtn').textContent='↑';$('sendBtn').disabled=false;$('connectionStatus').textContent='آمادهٔ گفتگو';}}
+$('sendBtn').onclick=send;$('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+$('newChat').onclick=$('newTop').onclick=startChat;$('settingsBtn').onclick=$('settingsTop').onclick=()=>{$('apiKey').value='';$('settings').showModal()};$('closeSettings').onclick=()=>$('settings').close();
+$('saveKey').onclick=()=>{const k=$('apiKey').value.trim();if(!k){alert('ابتدا کلید API را وارد کن.');return}localStorage.setItem(KEY_NAME,k);$('settings').close();$('connectionStatus').textContent='کلید در همین مرورگر ذخیره شد';};
+$('forgetKey').onclick=()=>{localStorage.removeItem(KEY_NAME);$('apiKey').value='';$('connectionStatus').textContent='کلید حذف شد';alert('کلید ذخیره‌شده از این مرورگر حذف شد.')};
+$('clearBtn').onclick=()=>{$('prompt').value='';$('prompt').focus()};
+$('themeBtn').onclick=()=>{document.body.classList.toggle('light');localStorage.setItem('aichat_theme',document.body.classList.contains('light')?'light':'dark')};
+$('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');
+$('searchHistory').onclick=()=>{const q=prompt('عنوان گفتگوی مورد نظر را بنویس (خالی برای نمایش همه):')||'';$('searchHistory').dataset.q=q;renderHistory()};
+document.querySelectorAll('.suggestion').forEach(b=>b.onclick=()=>{$('prompt').value=b.textContent.replace(/^\S+\s*/,'');$('prompt').focus()});
+if(localStorage.getItem('aichat_theme')==='light')document.body.classList.add('light');
+if(conversations.length){activeId=conversations[0].id;render()}else{startChat();conversations=[];activeId=null;render()}
 </script>
 </body></html>
