@@ -14,12 +14,12 @@ header{height:72px;display:flex;align-items:center;justify-content:space-between
 .status{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:7px 11px;border-radius:99px}
 main{width:min(100% - 28px,900px);margin:0 auto;padding:48px 0 36px}.intro{text-align:center;margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.06em;color:var(--accent);font-weight:700}.intro h1{font-size:clamp(29px,5vw,46px);margin:12px 0 10px;letter-spacing:-.04em}.intro p{color:var(--muted);line-height:1.9;margin:0 auto;max-width:610px}
 .shell{border:1px solid var(--line);border-radius:24px;background:#151821d9;overflow:hidden;box-shadow:0 24px 90px #0005}.bar{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.bar strong{font-size:14px}.bar small{color:var(--muted)}
-.frame-wrap{height:min(68vh,660px);min-height:420px;background:#fff;position:relative}.frame-wrap iframe{border:0;width:100%;height:100%;background:#fff}.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;background:var(--panel);z-index:2}.overlay.show{display:flex}.overlay-card{max-width:480px}.duck{font-size:38px;margin-bottom:12px}.overlay h2{font-size:22px;margin:8px}.overlay p{color:var(--muted);line-height:1.9;font-size:14px}
+.frame-wrap{height:calc(100vh - 190px);min-height:620px;background:#fff;position:relative}.frame-wrap iframe{border:0;width:100%;height:100%;background:#fff}.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;background:var(--panel);z-index:2}.overlay.show{display:flex}.overlay-card{max-width:480px}.duck{font-size:38px;margin-bottom:12px}.overlay h2{font-size:22px;margin:8px}.overlay p{color:var(--muted);line-height:1.9;font-size:14px}
 button,.primary{appearance:none;border:0;border-radius:14px;background:var(--accent);color:#171a20;font-weight:800;font-size:14px;padding:13px 20px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}.secondary{background:#252a36;color:var(--text);border:1px solid var(--line)}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
 .hint{padding:15px 18px;color:var(--muted);font-size:12px;line-height:1.9;border-top:1px solid var(--line)}
 .info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.info article{background:#171a22;border:1px solid var(--line);border-radius:16px;padding:16px}.info b{display:block;font-size:13px;margin-bottom:6px}.info p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
 footer{text-align:center;padding:12px 16px 30px;color:#777e8e;font-size:12px}a{color:var(--blue)}
-@media(max-width:620px){header{height:62px}.status{font-size:10px;padding:6px 8px}main{padding-top:32px}.frame-wrap{height:62vh;min-height:390px}.info{grid-template-columns:1fr}.intro p{font-size:14px}.bar{align-items:flex-start;flex-direction:column;gap:5px}}
+@media(max-width:620px){header{height:62px}.status{font-size:10px;padding:6px 8px}main{padding-top:18px}.frame-wrap{height:calc(100vh - 170px);min-height:520px}.info{grid-template-columns:1fr}.intro p{font-size:14px}.bar{align-items:flex-start;flex-direction:column;gap:5px}}
 </style>
 </head>
 <body>
@@ -27,10 +27,10 @@ footer{text-align:center;padding:12px 16px 30px;color:#777e8e;font-size:12px}a{c
 <main>
 <section class="intro"><div class="eyebrow">گفت‌وگوی هوشمند</div><h1>با Duck.ai گفتگو کن</h1><p>در این صفحه تلاش می‌کنیم چت رسمی Duck.ai را در دسترس قرار دهیم. امکانات و پاسخ‌ها متعلق به سرویس اصلی Duck.ai هستند.</p></section>
 <section class="shell" aria-label="پنجره Duck.ai">
-<div class="bar"><strong>گفت‌وگوی Duck.ai</strong><small id="state" role="status">در حال بررسی امکان نمایش…</small></div>
+<div class="bar"><strong>گفت‌وگوی Duck.ai</strong><small id="state" role="status">نسخهٔ رسمی Duck.ai در پنجرهٔ زیر</small></div>
 <div class="frame-wrap">
 <iframe id="duckframe" title="Duck.ai official chat" src="https://duck.ai/chat?ia=chat&duckai=1&home=1&prompt=1&origin=funnel_home_google&t=h_&chatID=9b05d61f-c88f-4918-acd6-438964519e4a" referrerpolicy="no-referrer" allow="clipboard-read; clipboard-write"></iframe>
-<div id="overlay" class="overlay"><div class="overlay-card"><div class="duck">🦆</div><h2>چت داخل صفحه در دسترس نیست</h2><p>ممکن است Duck.ai نمایش درون‌صفحه‌ای را به دلایل امنیتی مسدود کرده باشد. این محدودیت را نمی‌توان از داخل این صفحه دور زد. برای استفاده از چت واقعی، آن را مستقیماً در سایت رسمی باز کن.</p><div class="actions"><a class="primary" href="https://duck.ai/chat?ia=chat&duckai=1&home=1&prompt=1&origin=funnel_home_google&t=h_&chatID=9b05d61f-c88f-4918-acd6-438964519e4a" target="_blank" rel="noopener noreferrer">باز کردن Duck.ai ↗</a><button class="secondary" id="retry">تلاش دوباره</button></div></div></div>
+<div id="overlay" class="overlay"><div class="overlay-card"><div class="duck">🦆</div><h2>اگر چت درون صفحه باز نشد</h2><p>ممکن است سیاست امنیتی Duck.ai اجازهٔ نمایش داخل سایت دیگر را ندهد. در این حالت، از لینک رسمی زیر استفاده کن؛ محدودیت iframe از سمت سایت مقصد است.</p><div class="actions"><a class="primary" href="https://duck.ai/chat?ia=chat&duckai=1&home=1" target="_blank" rel="noopener noreferrer">باز کردن Duck.ai ↗</a><button class="secondary" id="retry">تلاش دوباره</button></div></div></div>
 </div>
 <div class="hint">این صفحه نسخهٔ رسمی یا وابسته به DuckDuckGo نیست و کد اختصاصی Duck.ai را کپی نمی‌کند. اگر پنجره سفید ماند، از دکمهٔ «باز کردن Duck.ai» استفاده کن.</div>
 </section>
@@ -38,8 +38,8 @@ footer{text-align:center;padding:12px 16px 30px;color:#777e8e;font-size:12px}a{c
 </main><footer>ساخته‌شده به‌عنوان درگاه مستقل؛ Duck.ai متعلق به ارائه‌دهندهٔ اصلی آن است.</footer>
 <script>
 const frame=document.getElementById('duckframe'),overlay=document.getElementById('overlay'),state=document.getElementById('state');let loaded=false;
-frame.addEventListener('load',()=>{loaded=true;state.textContent='درخواست بارگذاری ارسال شد';setTimeout(()=>{state.textContent='اگر صفحه سفید است، از لینک رسمی استفاده کن';overlay.classList.add('show')},3500)});
+frame.addEventListener('load',()=>{loaded=true;state.textContent='صفحهٔ مقصد پاسخ داده است؛ تعامل کامل به اجازهٔ Duck.ai بستگی دارد'});
 document.getElementById('retry').addEventListener('click',()=>{overlay.classList.remove('show');state.textContent='در حال تلاش دوباره…';frame.src='https://duck.ai/chat?ia=chat&duckai=1&home=1&prompt=1&origin=funnel_home_google&t=h_&chatID='+Date.now()});
-setTimeout(()=>{if(!loaded){state.textContent='بارگذاری طولانی شد';overlay.classList.add('show')}},8000);
+setTimeout(()=>{if(!loaded){state.textContent='بارگذاری طولانی شد؛ ممکن است Duck.ai نمایش درون‌صفحه‌ای را مسدود کرده باشد';overlay.classList.add('show')}},12000);
 </script>
 </body></html>
