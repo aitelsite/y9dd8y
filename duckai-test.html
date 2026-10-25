@@ -1,121 +1,17 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101218">
-<title>چت هوش مصنوعی | سایت من</title>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101218"><title>چت هوش مصنوعی</title>
 <style>
-:root{color-scheme:dark;--bg:#101218;--panel:#191d27;--panel2:#202532;--line:#303747;--text:#f5f6fa;--muted:#aeb6c7;--accent:#ffdf45;--green:#8bd9a8;--danger:#ff9d9d}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;min-height:100vh;min-height:100dvh}
-.app{max-width:980px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
-header{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line);background:#151821;position:sticky;top:0;z-index:2}
-.logo{width:42px;height:42px;border-radius:14px;background:var(--accent);color:#151515;display:grid;place-items:center;font-size:23px;flex-shrink:0}
-.headcopy{flex:1;min-width:0}h1{font-size:17px;margin:0;font-weight:800}.sub{font-size:12px;color:var(--muted);margin-top:4px}
-.pill{font-size:11px;color:var(--green);border:1px solid #315c45;border-radius:99px;padding:6px 9px;white-space:nowrap}
-main{flex:1;padding:25px 16px 18px;display:flex;flex-direction:column}
-.welcome{text-align:center;margin:auto auto 20px;max-width:570px;padding:28px 12px}
-.welcome .big{font-size:42px}.welcome h2{font-size:23px;margin:12px 0 8px}.welcome p{color:var(--muted);line-height:1.9;margin:0;font-size:14px}
-#messages{width:100%;display:flex;flex-direction:column;gap:18px;padding-bottom:24px}
-.msg{display:flex;gap:10px;align-items:flex-start;max-width:100%}.msg.user{flex-direction:row-reverse}
-.avatar{width:30px;height:30px;flex:0 0 30px;border-radius:10px;background:#292f3e;display:grid;place-items:center;font-size:15px}
-.msg.user .avatar{background:#45402a}
-.bubble{max-width:min(790px,calc(100% - 40px));padding:13px 15px;border:1px solid var(--line);border-radius:16px;background:var(--panel);line-height:1.95;font-size:14px;overflow-wrap:anywhere;white-space:pre-wrap}
-.msg.user .bubble{background:#252a36;border-color:#3b4354}
-.bubble a{color:#ffe77b;word-break:break-all}.sources{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px}.sources strong{display:block;margin-bottom:5px}.sources a{display:block;margin:5px 0}
-.status{color:var(--muted);font-size:12px;padding:0 4px 10px;min-height:20px}
-.composer-wrap{position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 16%);padding:15px 16px 20px}
-.composer{display:flex;gap:10px;align-items:flex-end;border:1px solid #41495a;background:var(--panel);border-radius:20px;padding:10px;box-shadow:0 10px 35px #0003}
-textarea{resize:none;flex:1;min-width:0;max-height:180px;min-height:44px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:14px;line-height:1.8;padding:9px 7px}
-textarea::placeholder{color:#929aab}
-button{font:inherit;cursor:pointer;border:0}
-.send{height:44px;min-width:48px;border-radius:14px;background:var(--accent);color:#171717;font-size:20px;font-weight:900;display:grid;place-items:center;padding:0 14px}
-.send:disabled{opacity:.45;cursor:not-allowed}
-.tools{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 4px 0;color:var(--muted);font-size:11px}
-.minor{background:transparent;color:var(--muted);padding:5px 0;font-size:11px}
-.error{color:var(--danger)}.typing{display:inline-flex;gap:4px;align-items:center}.typing span{width:6px;height:6px;border-radius:50%;background:#b8bfcd;animation:bounce 1s infinite ease-in-out}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-5px);opacity:1}}
-@media(max-width:560px){header{padding:12px}.logo{width:38px;height:38px}.pill{display:none}main{padding:18px 11px 10px}.welcome{padding:20px 8px}.welcome h2{font-size:20px}.composer-wrap{padding:10px 10px 14px}.bubble{font-size:14px;padding:11px 12px}.sub{font-size:11px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header>
-  <div class="logo" aria-hidden="true">✦</div>
-  <div class="headcopy"><h1>چت هوش مصنوعی</h1><div class="sub">گفت‌وگو در همین سایت · پاسخ فارسی</div></div>
-  <span class="pill" id="connection">در حال بررسی اتصال…</span>
-</header>
-<main>
-  <section class="welcome" id="welcome">
-    <div class="big" aria-hidden="true">💬</div>
-    <h2>چطور می‌توانم کمک کنم؟</h2>
-    <p>پیامت را بنویس و ارسال کن. پاسخ‌ها در همین صفحه نمایش داده می‌شوند. اگر جست‌وجوی زنده در دسترس باشد، منابع وب نیز همراه پاسخ نشان داده می‌شوند.</p>
-  </section>
-  <section id="messages" aria-live="polite" aria-label="گفت‌وگو"></section>
-  <div class="status" id="status" role="status"></div>
-</main>
-<div class="composer-wrap">
-  <form class="composer" id="form">
-    <textarea id="prompt" rows="1" maxlength="6000" placeholder="پیامت را اینجا بنویس…" aria-label="متن پیام"></textarea>
-    <button class="send" id="send" type="submit" aria-label="ارسال پیام" title="ارسال">➤</button>
-  </form>
-  <div class="tools"><span>Enter برای ارسال · Shift+Enter برای خط جدید</span><button class="minor" id="clear" type="button">گفت‌وگوی جدید</button></div>
-</div>
-</div>
+:root{color-scheme:dark;--bg:#101218;--panel:#191d27;--line:#343b4c;--text:#f5f6fa;--muted:#aeb6c7;--accent:#ffdf45}*{box-sizing:border-box}body{margin:0;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}header{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;background:#151821;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:var(--accent);color:#171717;font-size:23px}h1{font-size:16px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:3px}button{font:inherit;cursor:pointer}.topbtn{background:#202633;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px}main{width:min(100%,850px);margin:auto;flex:1;display:flex;flex-direction:column;padding:16px 13px 8px;min-height:0}.welcome{text-align:center;margin:auto;padding:25px 8px}.welcome .big{font-size:42px}.welcome h2{font-size:clamp(21px,5vw,28px);margin:10px 0}.welcome p{color:var(--muted);line-height:1.9;font-size:14px}#messages{display:flex;flex-direction:column;gap:14px;padding-bottom:16px}.msg{border-radius:16px;padding:12px 15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}.msg.user{align-self:flex-start;max-width:92%;background:#2b3547;border:1px solid #3a465b;border-bottom-right-radius:5px}.msg.assistant{align-self:stretch;background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:5px}.who{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.status{font-size:12px;color:var(--muted);padding:6px 3px;min-height:24px}.composer{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--bg) 18%);padding:12px 0 max(8px,env(safe-area-inset-bottom))}form{display:flex;align-items:flex-end;gap:8px;background:var(--panel);border:1px solid #454d60;border-radius:20px;padding:9px}textarea{resize:none;flex:1;min-width:0;max-height:180px;min-height:44px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:15px;line-height:1.7;padding:9px 7px}textarea::placeholder{color:#8992a5}#send{width:44px;height:44px;flex:0 0 44px;border-radius:14px;background:var(--accent);color:#171717;font-size:21px;font-weight:800;border:0}#send:disabled{opacity:.45}.foot{text-align:center;color:#7f8798;font-size:10px;line-height:1.7;padding:8px 4px 2px}@media(max-width:540px){header{padding:10px}.logo{width:35px;height:35px}h1{font-size:14px}.sub{font-size:10px}main{padding:10px}.msg{font-size:14px}}
+</style></head><body>
+<header><div class="brand"><div class="logo" aria-hidden="true">✳</div><div><h1>چت هوش مصنوعی</h1><div class="sub">گفتگو در همین سایت</div></div></div><button class="topbtn" id="newchat" type="button">گفتگوی جدید ↻</button></header>
+<main><section class="welcome" id="welcome"><div class="big">✳</div><h2>چطور می‌تونم کمکت کنم؟</h2><p>سؤالت را بنویس و ارسال کن. گفتگو همین‌جا نمایش داده می‌شود.</p></section><section id="messages" aria-live="polite"></section><div class="status" id="status" role="status"></div><div class="composer"><form id="chatform"><textarea id="prompt" rows="1" placeholder="پیامت را بنویس…" aria-label="متن پیام" required></textarea><button id="send" type="submit" aria-label="ارسال پیام">➤</button></form><div class="foot">این رابط چت داخل سایت شماست؛ سرویس رسمی Duck.ai نیست.</div></div></main>
 <script>
-const API_URL = "https://aitel-ai-chat-2026.oj155304.workers.dev/api/chat";
-const form=document.getElementById("form"), promptBox=document.getElementById("prompt"), sendBtn=document.getElementById("send");
-const messagesEl=document.getElementById("messages"), statusEl=document.getElementById("status"), welcomeEl=document.getElementById("welcome"), connectionEl=document.getElementById("connection");
-const history=[];
-function safeLink(url){try{const u=new URL(url);return ["https:","http:"].includes(u.protocol)?u.href:"#"}catch{return "#"}}
-function addMessage(role,text,sources=[]){
-  welcomeEl.style.display="none";
-  const row=document.createElement("div");row.className="msg "+role;
-  const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent=role==="user"?"ش":"✦";
-  const bubble=document.createElement("div");bubble.className="bubble";bubble.textContent=text;
-  if(role==="assistant"&&sources.length){
-    const box=document.createElement("div");box.className="sources";const title=document.createElement("strong");title.textContent="منابع وب";box.appendChild(title);
-    sources.forEach(s=>{const a=document.createElement("a");a.href=safeLink(s.url);a.target="_blank";a.rel="noopener noreferrer";a.textContent=s.title||s.url;box.appendChild(a)});
-    bubble.appendChild(box);
-  }
-  row.append(avatar,bubble);messagesEl.appendChild(row);row.scrollIntoView({behavior:"smooth",block:"end"});return row;
-}
-function setTyping(on){
-  let old=document.getElementById("typing-row");if(old)old.remove();
-  if(!on)return;
-  const row=document.createElement("div");row.id="typing-row";row.className="msg assistant";
-  const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent="✦";
-  const bubble=document.createElement("div");bubble.className="bubble";
-  const dots=document.createElement("span");dots.className="typing";for(let i=0;i<3;i++)dots.appendChild(document.createElement("span"));
-  bubble.append("در حال فکر کردن ",dots);row.append(avatar,bubble);messagesEl.appendChild(row);row.scrollIntoView({behavior:"smooth",block:"end"});
-}
-async function sendMessage(text){
-  if(!text.trim()||sendBtn.disabled)return;
-  const userText=text.trim();addMessage("user",userText);history.push({role:"user",content:userText});
-  promptBox.value="";resizeInput();sendBtn.disabled=true;statusEl.textContent="";setTyping(true);
-  try{
-    const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history})});
-    let data={};try{data=await response.json()}catch{}
-    setTyping(false);
-    if(!response.ok||!data.answer){
-      const msg=data.error||"اتصال به سرویس پاسخ‌گویی ناموفق بود. کمی بعد دوباره امتحان کن.";
-      addMessage("assistant",msg+(data.detail?"\n\nجزئیات فنی: "+data.detail:""));history.pop();
-      statusEl.textContent="پاسخ دریافت نشد؛ پیام را دوباره ارسال کن.";statusEl.className="status error";
-    }else{
-      addMessage("assistant",data.answer,Array.isArray(data.sources)?data.sources:[]);history.push({role:"assistant",content:data.answer});
-      statusEl.className="status";statusEl.textContent=data.search_performed?"پاسخ با تلاش برای جست‌وجوی زنده آماده شد.":"پاسخ بدون جست‌وجوی زنده آماده شد.";
-    }
-  }catch(e){
-    setTyping(false);addMessage("assistant","ارتباط با سرویس برقرار نشد. اتصال اینترنت را بررسی کن و دوباره تلاش کن.");history.pop();statusEl.className="status error";statusEl.textContent="خطای اتصال";
-  }finally{sendBtn.disabled=false;promptBox.focus()}
-}
-form.addEventListener("submit",e=>{e.preventDefault();sendMessage(promptBox.value)});
-promptBox.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
-function resizeInput(){promptBox.style.height="auto";promptBox.style.height=Math.min(promptBox.scrollHeight,180)+"px"}
-promptBox.addEventListener("input",resizeInput);
-document.getElementById("clear").addEventListener("click",()=>{history.length=0;messagesEl.replaceChildren();statusEl.textContent="";statusEl.className="status";welcomeEl.style.display="block";promptBox.value="";resizeInput();promptBox.focus()});
-fetch(API_URL.replace("/api/chat","/"),{method:"GET"}).then(r=>{connectionEl.textContent=r.ok?"سرویس متصل":"سرویس نیاز به بررسی دارد";connectionEl.style.color=r.ok?"var(--green)":"var(--danger)"}).catch(()=>{connectionEl.textContent="اتصال نامشخص";connectionEl.style.color="var(--danger)"});
-</script>
-</body>
-</html>
+const API_URL="https://aitel-ai-chat-2026.oj155304.workers.dev/api/chat",form=document.getElementById("chatform"),input=document.getElementById("prompt"),send=document.getElementById("send"),messages=document.getElementById("messages"),statusEl=document.getElementById("status"),welcome=document.getElementById("welcome");let history=[];
+function addMessage(role,text){const el=document.createElement("div");el.className="msg "+role;const who=document.createElement("span");who.className="who";who.textContent=role==="user"?"شما":"هوش مصنوعی";const body=document.createElement("div");body.textContent=text;el.append(who,body);messages.appendChild(el);el.scrollIntoView({behavior:"smooth",block:"end"});return el}
+function responseText(d){if(typeof d==="string")return d;return d?.answer??d?.response??d?.text??d?.message??d?.result?.response??d?.result?.text??d?.choices?.[0]?.message?.content??""}
+input.addEventListener("input",()=>{input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px"});input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
+form.addEventListener("submit",async e=>{e.preventDefault();const message=input.value.trim();if(!message||send.disabled)return;welcome.style.display="none";addMessage("user",message);input.value="";input.style.height="auto";send.disabled=true;statusEl.textContent="در حال دریافت پاسخ…";const loading=addMessage("assistant","در حال فکر کردن…");
+try{const res=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message,history,webSearch:true})});const raw=await res.text();let data;try{data=JSON.parse(raw)}catch{data={text:raw}}if(!res.ok)throw new Error(data.error||data.message||("خطای سرویس ("+res.status+")"));const answer=responseText(data);if(!answer)throw new Error(data.error||"سرویس پاسخ قابل‌نمایشی برنگرداند.");loading.lastChild.textContent=answer;history.push({role:"user",content:message},{role:"assistant",content:answer});statusEl.textContent=""}
+catch(err){loading.lastChild.textContent="پاسخ دریافت نشد: "+(err.message||"خطای اتصال")+". ممکن است تنظیمات یا اعتبار سرویس Worker نیاز به بررسی داشته باشد.";statusEl.textContent="اتصال به سرویس با خطا روبه‌رو شد."}finally{send.disabled=false;input.focus()}});
+document.getElementById("newchat").addEventListener("click",()=>{messages.replaceChildren();history=[];welcome.style.display="block";statusEl.textContent="گفتگوی جدید آماده است.";input.value="";input.focus()});
+</script></body></html>
