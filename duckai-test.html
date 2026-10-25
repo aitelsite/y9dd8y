@@ -7,19 +7,19 @@
 <title>Duck.ai — پرسش از هوش مصنوعی</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#101218;color:#f5f6fa;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
-body{display:flex;flex-direction:column;min-height:100dvh}
+body{display:flex;flex-direction:column;min-height:100dvh;padding-bottom:94px}
 header{flex:0 0 auto;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#171a22;border-bottom:1px solid #303544}
 h1{font-size:14px;margin:0}p{margin:4px 0 0;color:#aab0bf;font-size:11px;line-height:1.6}
 a{color:#c4d1ff}.open{white-space:nowrap;border:1px solid #42495b;border-radius:10px;padding:8px 10px;color:#fff;text-decoration:none;font-size:12px}
-main{flex:1;min-height:170px;position:relative}iframe{width:100%;height:100%;border:0;background:#101218}
-.composer{flex:0 0 auto;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#171a22;border-top:1px solid #303544}
+main{flex:1;min-height:170px;position:relative;height:calc(100dvh - 160px)}iframe{width:100%;height:100%;border:0;background:#101218}
+.composer{position:fixed;z-index:99999;left:0;right:0;bottom:0;flex:0 0 auto;padding:12px 12px calc(12px + env(safe-area-inset-bottom));background:#171a22;border-top:2px solid #879cff;box-shadow:0 -8px 28px #0009}
 form{max-width:900px;margin:auto;display:flex;gap:8px;align-items:stretch}
 textarea{flex:1;min-width:0;min-height:48px;max-height:120px;resize:vertical;background:#242936;color:#fff;border:1px solid #42495b;border-radius:13px;padding:12px;font:inherit;font-size:14px;outline:none}
 textarea:focus{border-color:#879cff}
-button{border:0;border-radius:12px;background:#e8edff;color:#141722;padding:0 18px;font:inherit;font-weight:700;cursor:pointer}
+button{border:0;border-radius:12px;background:#e8edff;color:#141722;padding:0 20px;min-width:92px;min-height:48px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 0 0 2px #e8edff33}
 button:disabled{opacity:.5}
 #status{max-width:900px;margin:6px auto 0;font-size:11px;color:#bdc4d5;line-height:1.6}
-@media(max-width:540px){header{align-items:flex-start}.open{font-size:11px;padding:7px 8px}main{min-height:140px}form{gap:6px}button{padding:0 13px;font-size:13px}textarea{font-size:13px}}
+@media(max-width:540px){header{align-items:flex-start}.open{font-size:11px;padding:7px 8px}main{min-height:140px;height:calc(100dvh - 190px)}form{gap:6px}button{padding:0 13px;min-width:82px;font-size:14px}textarea{font-size:13px}}
 </style>
 </head>
 <body>
@@ -35,7 +35,7 @@ button:disabled{opacity:.5}
 <textarea id="question" placeholder="سؤالت را اینجا بنویس..." aria-label="متن پرسش" required></textarea>
 <button type="submit">ارسال ↗</button>
 </form>
-<div id="status" role="status">متن را بنویس و «ارسال» را بزن؛ صفحه رسمی Duck.ai باز می‌شود و متن پرسش کپی می‌شود تا آنجا بچسبانی و ارسال کنی.</div>
+<div id="status" role="status">متن را بنویس و «ارسال» را بزن؛ صفحه رسمی Duck.ai باز می‌شود و تلاش می‌کنیم متن سؤال کپی شود؛ برای ارسال مستقیم از این صفحه، Duck.ai رابط API عمومی ارائه نمی‌کند.</div>
 </section>
 <script>
 const form=document.getElementById('askForm');
